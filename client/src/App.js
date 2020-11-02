@@ -9,14 +9,19 @@ function App() {
 		gender: '',
 		DOB: '',
 		YOB: '',
-		adhaarNum: ''
+		adhaarNum: '',
+		cameraOption:0
 	});
-	const { name, address, gender, DOB, YOB, adhaarNum } = state;
-	const value = { name, address, gender, DOB, YOB, adhaarNum };
+	const { name, address, gender, DOB, YOB, adhaarNum, cameraOption } = state;
+	const value = { name, address, gender, DOB, YOB, adhaarNum, cameraOption };
 
 	const handleChange = (input) => (e) => {
 		setState({ ...state, [input]: e.target.value });
 	};
+	const cameraChanger = () => {
+		const camera = document.getElementById('camSelect')
+		setState({...state, cameraOption: camera.selectedOptions[0].value})
+	}
 
 	const scanResult = (qrCode) => {
 		axios
@@ -39,6 +44,7 @@ function App() {
 			.catch(function(error) {
 				console.log(error.response);
 			});
+			
 	};
 	return (
 		<div className="App-container">
@@ -47,13 +53,19 @@ function App() {
 				<Cameras>
 					{(cameras) => (
 						<div className="video-container">
-							<Scanner camera={cameras[0]} onScan={scanResult} options={{ mirror: false }}>
+							<Scanner camera={cameras[cameraOption]} onScan={scanResult} options={{ mirror: false }}>
 								<video style={{ width: '90%' }} />
 							</Scanner>
 						</div>
 					)}
 				</Cameras>
 				<div className="qrcode-banner">Scan your Adhaar Card</div>
+				<div className="select-box">
+				<select id="camSelect" onChange={cameraChanger}>
+					<option value="0">Camera 1 (Front)</option>
+					<option value="1">Camera 2 (Rear)</option>
+				</select>
+				</div>
 			</div>
 			<div className="form-container">
 				<div className="form">

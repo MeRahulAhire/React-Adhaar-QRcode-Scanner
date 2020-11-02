@@ -28,6 +28,20 @@
   display: grid;
   place-items: center;
 }
+.select-box{
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+select{
+  width:150px;
+  height: 50px;
+  background-color: #3f51b5;
+  color:white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+
+}
 video{
   margin: 0.75rem;
 }
@@ -104,25 +118,25 @@ video{
 .footer{
   height: 135px;
   width: 100%;
-  /* bottom: 0; */
+ 
   color: white;
   background-color: #ba000d;
   text-align: center;
-  /* position: absolute; */
+ 
 }
 .p{
   margin-top:0.5rem ;
 }
 a{
   cursor: pointer;
-  /* background-color: white; */
+
 }
 @media only screen and (max-width: 1024px) {
   .App{
     flex-direction: column;
   }
   .video-container{
-    /* display: block; */
+   
     margin-top: 0;
   }
   .scanner{
